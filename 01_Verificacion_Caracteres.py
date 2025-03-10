@@ -1,4 +1,3 @@
-# Función que verifica si una expresión contiene correctamente balanceados los símbolos de apertura y cierre: (), [], {}.
 def balanced(expression: str) -> bool:
     """
     Verifica si la expresión está balanceada para los símbolos (), [], {}.
@@ -61,12 +60,24 @@ def balanced(expression: str) -> bool:
 
 
 def main():
+    try:
+        limit = int(input("Ingrese el límite máximo de caracteres: "))  # Pedimos el límite al usuario
+        expression = input("Ingresa la expresión a verificar: ")  # Pedimos la expresión
 
-    expression = input("Ingresa la expresión a verificar: ")  # Pedimos al usuario que ingrese la expresión
-    if balanced(expression):  # Llamamos a la función para verificar si la expresión es válida
-        print("La expresión es correcta.")  # Mensaje de éxito si está balanceada
-    else:
-        print("La expresión es incorrecta.")  # Mensaje de error si no está balanceada
+        # Verificar si la expresión excede el límite de caracteres
+        if len(expression) > limit:
+            print(f"Error: La expresión ingresada excede el límite de {limit} caracteres.")
+            print("Posible solución: Intenta reducir la cantidad de caracteres en tu expresión.")
+            print("La expresión es incorrecta.")  # Mensaje final
+        else:
+            # Llamamos a la función para verificar si la expresión es válida
+            if balanced(expression):
+                print("La expresión es correcta.")  # Mensaje de éxito si está balanceada
+            else:
+                print("La expresión es incorrecta.")  # Mensaje de error si no está balanceada
+
+    except ValueError:
+        print("Error: Ingrese un número válido para el límite de caracteres.")
 
 
 # Si el script se ejecuta directamente, llamamos a la función main()
